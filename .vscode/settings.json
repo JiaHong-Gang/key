@@ -1,0 +1,12 @@
+{
+    "files.associations": {
+        "stdio.h": "c",
+        "sha.h": "c",
+        "stdlib.h": "c",
+        "lock_unlock_file.h": "c",
+        "save_password.h": "c",
+        "compute_hash.h": "c",
+        "string.h": "c",
+        "setup_password.h": "c"
+    }
+}
