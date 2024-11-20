@@ -3,5 +3,5 @@
 #include <string.h>
 void compute_hash(char *input, unsigned char *hash)
 {
-    SHA256((unsigned char *)input, strlen(input), hash);
+    SHA256((unsigned char *)input, strlen(input), hash);    //Compute the hash
 }

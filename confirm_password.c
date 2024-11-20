@@ -8,17 +8,16 @@
 void confirm_password(int i)
 {
     char password[16], filename[256];
-    unsigned char hash1[SHA256_DIGEST_LENGTH],hash2[SHA256_DIGEST_LENGTH];
+    unsigned char saved_hash[SHA256_DIGEST_LENGTH],input_hash[SHA256_DIGEST_LENGTH];
     printf("Please tell me which file you want to unlock\n");
-    scanf("%255s",filename);    
+    scanf("%255s",filename);    // Enter the file path to unlock 
     printf("Please enter password to unlock file\n");
-    scanf("%15s",password);
-    compute_hash(password,hash2);
-    load_password(hash1);
-    if(memcmp(hash1,hash2,SHA256_DIGEST_LENGTH) == 0)
+    scanf("%15s",password);     //Entrer the password to unlock
+    compute_hash(password,input_hash);  // Compute the entered hash
+    load_password(filename,saved_hash); // Load the saved file path and password
+    if(memcmp(saved_hash,input_hash,SHA256_DIGEST_LENGTH) == 0) //Compare the entered password and file path with the saved ones
     {
-        unlock_file(filename);
-        remove("save_password.txt");
+        unlock_file(filename);          // Unlock the file
         exit(0);
     }
     else

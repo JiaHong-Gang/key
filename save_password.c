@@ -2,11 +2,11 @@
 #include <stdlib.h>
 #include <string.h>
 #include <openssl/sha.h>
-void save_password(unsigned char *hash)
+#include "config.h"
+void save_password(const char *filename, unsigned char *hash)
 {
-    const char *filename = "save_password.txt";
     FILE *file;
-    file = fopen(filename,"w");
+    file = fopen(PASSWORD_FILE_INFO,"a");     //Open the file and write new information
     if (file == NULL)
     {
         printf("Error!No such file\n");
@@ -14,9 +14,10 @@ void save_password(unsigned char *hash)
     }
     else
     {
-        fwrite(hash,1,SHA256_DIGEST_LENGTH,file);
+        fwrite(hash,1,SHA256_DIGEST_LENGTH,file);   // Write the hash into the file
+        fprintf(file,"%s\n",filename);      //Write the file path into the file
+        fclose(file);       //Close the file
     }
-    fclose(file);
 }
 
 
